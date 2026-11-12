@@ -617,10 +617,7 @@ Java_me_timschneeberger_rootlessjamesdsp_interop_JamesDspWrapper_setLiveprog(JNI
 
     int ret = LiveProgStringParser(dsp, (char*)nativeString); // Ignore constness, libjamesdsp does not modify it
     env->ReleaseStringUTFChars(liveprogContent, nativeString);
-
-    // Workaround due to library bug
-    jdsp_unlock(dsp);
-
+   
     const char* errorString = NSEEL_code_getcodeerror(dsp->eel.vm);
     if(errorString != nullptr)
     {
